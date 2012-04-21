@@ -1,4 +1,4 @@
-class TicketsController < ApplicationController
+class PlacesController < ApplicationController
   respond_to :json
   helper_method :tickets
 
