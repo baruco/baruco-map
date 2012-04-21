@@ -1,4 +1,4 @@
 AmiandoStats::Application.routes.draw do
-  resource :map
   resources :tickets
+  root to: 'maps#show'
 end
