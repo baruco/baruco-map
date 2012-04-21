@@ -1,9 +1,11 @@
 doctype 5
 html lang=I18n.locale
   head
-    title=Website::TITLE
+    title Barcelona Ruby Conference 2012 attendees map
     = javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{Website::MAPS_KEY}&sensor=false"
     = javascript_include_tag :application
     = stylesheet_link_tag :application, :media => 'screen, projection'
   body
+    h1#logo
+      =link_to 'Barcelona Ruby Conference 2012', 'http://baruco.org', target: '_blank'
     =yield
