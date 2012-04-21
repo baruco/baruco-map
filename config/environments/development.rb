@@ -35,5 +35,9 @@ AmiandoStats::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
+  config.generators do |g|
+    g.test_framework :mini_test, :spec => true, :fixture => true
+  end
+
   STDOUT.sync = true
 end
