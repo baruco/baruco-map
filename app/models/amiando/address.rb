@@ -24,6 +24,10 @@ module Amiando
       data.street
     end
 
+    def zip
+      data.zipCode
+    end
+
     def full
       [street, city, country].join(', ')
     end

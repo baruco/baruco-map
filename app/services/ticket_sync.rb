@@ -9,6 +9,7 @@ class TicketSync
       puts "Persisting ticket #{ticket.inspect}..."
       persistence.attributes = {
         city: ticket.city,
+        zip: ticket.zip,
         country: ticket.country
       }
       persistence.save

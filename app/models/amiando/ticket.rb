@@ -19,21 +19,7 @@ module Amiando
       @id
     end
 
-    def name
-      address.name
-    end
-
-    def street
-      address.street
-    end
-
-    def city
-      address.city
-    end
-
-    def country
-      address.country
-    end
+    delegate :name, :street, :zip, :city, :country, to: :address
 
   private
 

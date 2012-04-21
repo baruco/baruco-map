@@ -4,10 +4,10 @@ class Ticket < ActiveRecord::Base
   before_save :geocode
 
   def partial_address
-    [city, country].join(', ')
+    [city, zip, country].join(', ')
   end
 
   def geocode
-    super if !city.blank? && !country.blank?
+    super if !city.blank? && !country.blank? && !zip.blank?
   end
 end
