@@ -11,6 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20120421093947) do
+
+  create_table "tickets", :force => true do |t|
+    t.integer "identifier"
+    t.string  "street"
+    t.string  "city"
+    t.string  "country"
+    t.float   "longitude"
+    t.float   "latitude"
+  end
 
 end

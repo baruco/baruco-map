@@ -8,16 +8,18 @@
   var markerClusterer = undefined;
 
   function createMap(){
+    var center = new google.maps.LatLng(30, 20);
     var myOptions = {
-      zoom: 4,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+      zoom: 2,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      center: center
     }
     map = new google.maps.Map(document.getElementById("map"), myOptions);
   }
 
   window.initMaps = function(url){
+    createMap();
     $.getJSON(url, function(data){
-      createMap();
       var times = 0;
       $.each(data, function(index, registration){
         if(registration.coordinates != undefined){
@@ -27,29 +29,30 @@
 
           var marker = new google.maps.Marker({
               position: position,
-              map: map,
-              icon: "<%=asset_path('map.png').html_safe%>"
+              map: map
           });
           addMarker(marker);
+
+          $.each(markers, function(index, marker){
+            bounds.extend(marker.position);
+          });
+
         }
       });
+
       markerClusterer = new MarkerClusterer(map, markers, {
-        maxZoom: 20,
-        gridSize: 40,
+        gridSize: 30,
         averageCenter: true,
         minimumClusterSize: 1,
         zoomOnClick: false,
         calculator: MarkerCalculator
       });
+
     });
   }
 
   function addMarker(marker){
     markers.push(marker);
-    $.each(markers, function(index, marker){
-      bounds.extend(marker.position);
-    });
-    map.fitBounds(bounds);
   }
 
   var MarkerCalculator = function (markers, numStyles) {

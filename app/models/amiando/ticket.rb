@@ -1,10 +1,11 @@
 require 'ostruct'
+require 'open-uri'
 
 module Amiando
-  class User
+  class Ticket
 
     def self.all
-      uri = "http://www.amiando.com/api/ticket/find?eventId=51748118&apikey=#{Website::AMIANDO_API_KEY}&version=1"
+      uri = "http://www.amiando.com/api/ticket/find?eventId=#{Website::AMIANDO_EVENT_ID}&apikey=#{Website::AMIANDO_API_KEY}&version=1"
       JSON.parse(open(uri).read)['ids'].map do |id|
         new(id)
       end
@@ -14,16 +15,24 @@ module Amiando
       @id = id
     end
 
+    def id
+      @id
+    end
+
     def name
       address.name
     end
 
-    def full_address
-      address.full
+    def street
+      address.street
     end
 
-    def partial_address
-      address.full
+    def city
+      address.city
+    end
+
+    def country
+      address.country
     end
 
   private

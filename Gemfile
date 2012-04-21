@@ -3,8 +3,9 @@ source 'https://rubygems.org'
 gem 'rails', '~> 3.2.1'
 
 gem 'slim-rails'
-gem 'amiando'
 gem 'thin'
+
+gem 'geocoder'
 
 group :development do
   gem 'sqlite3'
