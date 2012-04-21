@@ -13,6 +13,10 @@ group :development do
   gem 'foreman'
 end
 
+group :production do
+  gem 'pg'
+end
+
 group :test do
   gem 'minitest-rails'
 end
