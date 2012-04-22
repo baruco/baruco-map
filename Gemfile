@@ -11,6 +11,9 @@ group :development do
   gem 'sqlite3'
   gem 'heroku'
   gem 'foreman'
+  gem 'guard'
+  gem 'guard-minitest'
+  gem 'guard-bundler'
 end
 
 group :production do
@@ -19,6 +22,8 @@ end
 
 group :test do
   gem 'minitest-rails'
+  gem 'database_cleaner'
+  gem 'mocha'
 end
 
 # Gems used only for assets and not required

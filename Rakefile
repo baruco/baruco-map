@@ -7,8 +7,8 @@ require File.expand_path('../config/application', __FILE__)
 require 'rake/testtask'
 Rake::TestTask.new do |t|
   t.libs << "test"
-  t.test_files = FileList['test/**/*/test_*.rb']
+  t.test_files = FileList['test/**/*/*_test.rb']
   t.verbose = true
 end
 
-AmiandoStats::Application.load_tasks
+BarucoMap::Application.load_tasks

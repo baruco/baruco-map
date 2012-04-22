@@ -4,9 +4,8 @@ class TicketSync
   end
 
   def sync
-    Amiando::Ticket.all.each do |ticket|
-      persistence = find_persisted_ticket(ticket)
-      puts "Persisting ticket #{ticket.inspect}..."
+    tickets.each do |ticket|
+      persistence = find_persisted_ticket(ticket.id)
       persistence.attributes = {
         city: ticket.city,
         zip: ticket.zip,
@@ -16,8 +15,12 @@ class TicketSync
     end
   end
 
-  def find_persisted_ticket(ticket)
-    Ticket.where(identifier: ticket.id).first || 
-      Ticket.new(identifier: ticket.id)
+  def find_persisted_ticket(id)
+    Ticket.where(identifier: id).first || 
+      Ticket.new(identifier: id)
+  end
+
+  def tickets
+    Amiando::Ticket.scoped
   end
 end
