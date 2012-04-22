@@ -7,14 +7,15 @@
   var bounds = new google.maps.LatLngBounds();
   var markerClusterer = undefined;
 
-  function createMap(){
+  var createMap = function(){
     var center = new google.maps.LatLng(30, 20);
     var myOptions = {
       zoom: 3,
       maxZoom: 8,
       minZoom: 3,
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      center: center
+      mapTypeId: google.maps.MapTypeId.TERRAIN,
+      center: center,
+      streetViewControl: false
     }
     map = new google.maps.Map(document.getElementById("map"), myOptions);
   }
