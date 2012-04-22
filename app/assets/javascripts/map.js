@@ -48,7 +48,7 @@
         gridSize: 25,
         averageCenter: true,
         minimumClusterSize: 1,
-        zoomOnClick: true,
+        zoomOnClick: false,
         calculator: MarkerCalculator
       });
     });
