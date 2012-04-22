@@ -51,7 +51,6 @@
         zoomOnClick: true,
         calculator: MarkerCalculator
       });
-
     });
   }
 
