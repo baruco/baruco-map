@@ -12,6 +12,7 @@ class TicketSync
         country: ticket.country
       }
       persistence.save
+      sleep(0.4)
     end
   end
 
