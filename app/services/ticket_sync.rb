@@ -22,6 +22,6 @@ class TicketSync
   end
 
   def tickets
-    Amiando::Ticket.scoped
+    Amiando::Ticket.all
   end
 end
