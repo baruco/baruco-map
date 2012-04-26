@@ -4,9 +4,13 @@ require 'open-uri'
 module Amiando
   class Ticket
     def self.all
-      uri = "http://www.amiando.com/api/ticket/find?eventId=#{Website::AMIANDO_EVENT_ID}&apikey=#{Website::AMIANDO_API_KEY}&version=1"
-      JSON.parse(open(uri).read)['ids'].map do |id|
-        new(id)
+      payments = "http://www.amiando.com/api/event/#{Website::AMIANDO_EVENT_ID}/payments?apikey=#{Website::AMIANDO_API_KEY}&version=1"
+      tickets = JSON.parse(open(payments).read)['payments'].map do |id|
+        uri = "http://www.amiando.com/api/payment/#{id}/tickets?apikey=#{Website::AMIANDO_API_KEY}&version=1"
+        tickets = JSON.parse(open(uri).read)['tickets']
+        ticket = tickets.first if tickets
+        puts "Ticket: #{ticket}"
+        new(ticket)
       end
     end
 
