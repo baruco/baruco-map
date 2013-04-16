@@ -5,14 +5,17 @@ class TicketSync
 
   def sync
     tickets.each do |ticket|
-      persistence = find_persisted_ticket(ticket.id)
-      puts "Syncing #{ticket.inspect}"
-      persistence.attributes = {
-        city: ticket.city,
-        zip: ticket.zip,
-        country: ticket.country
-      }
-      persistence.save
+      begin
+        persistence = find_persisted_ticket(ticket.id)
+        puts "Syncing #{ticket.inspect}"
+        persistence.attributes = {
+          city: ticket.city,
+          zip: ticket.zip,
+          country: ticket.country
+        }
+        persistence.save
+      rescue OpenURI::HTTPError
+      end
     end
   end
 

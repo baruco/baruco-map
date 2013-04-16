@@ -6,14 +6,11 @@ module Amiando
     def self.all
       payments = "http://www.amiando.com/api/event/#{Website::AMIANDO_EVENT_ID}/payments?apikey=#{Website::AMIANDO_API_KEY}&version=1"
       tickets = JSON.parse(open(payments).read)['payments'].map do |id|
-        begin
-          uri = "http://www.amiando.com/api/payment/#{id}/tickets?apikey=#{Website::AMIANDO_API_KEY}&version=1"
-          tickets = JSON.parse(open(uri).read)['tickets']
-          ticket = tickets.first if tickets
-          puts "Ticket: #{ticket}"
-          new(ticket)
-        rescue
-        end
+        uri = "http://www.amiando.com/api/payment/#{id}/tickets?apikey=#{Website::AMIANDO_API_KEY}&version=1"
+        tickets = JSON.parse(open(uri).read)['tickets']
+        ticket = tickets.first if tickets
+        puts "Ticket: #{ticket}"
+        new(ticket)
       end
     end
 
