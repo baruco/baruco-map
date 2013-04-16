@@ -7,14 +7,17 @@ class Ticket < ActiveRecord::Base
   end
 
   def geocode
-    results = Geocoder.search(address)
-    if geo = results.first
-      results = Geocoder.search("#{geo.city}, #{geo.country}")
-      self.city = geo.city
-      if result = results.first
-        self.longitude = result.longitude
-        self.latitude = result.latitude
+    begin
+      results = Geocoder.search(address)
+      if geo = results.first
+        results = Geocoder.search("#{geo.city}, #{geo.country}")
+        self.city = geo.city
+        if result = results.first
+          self.longitude = result.longitude
+          self.latitude = result.latitude
+        end
       end
+    rescue
     end
   end
 end
