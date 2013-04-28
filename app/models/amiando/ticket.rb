@@ -8,9 +8,12 @@ module Amiando
       tickets = JSON.parse(open(payments).read)['payments'].map do |id|
         uri = "http://www.amiando.com/api/payment/#{id}/tickets?apikey=#{Website::AMIANDO_API_KEY}&version=1"
         tickets = JSON.parse(open(uri).read)['tickets']
-        ticket = tickets.first if tickets
-        puts "Ticket: #{ticket}"
-        new(ticket)
+        if tickets
+          return tickets.map do |ticket|
+            puts "Ticket: #{ticket}"
+            new(ticket)
+          end
+        end
       end
     end
 
