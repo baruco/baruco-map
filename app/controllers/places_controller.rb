@@ -5,6 +5,6 @@ class PlacesController < ApplicationController
 private
 
   def tickets
-    @tickets ||= Ticket.scoped
+    @tickets ||= Ticket.geocoded
   end
 end

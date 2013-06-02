@@ -2,6 +2,10 @@ class Ticket < ActiveRecord::Base
 
   before_save :geocode
 
+  def self.geocoded
+    where(arel_table[:latitude].not_eq(nil))
+  end
+
   def address
     [city, zip, country].compact.join(', ')
   end
